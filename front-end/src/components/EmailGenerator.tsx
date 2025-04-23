@@ -1,0 +1,96 @@
+import React, { useState } from 'react';
+import { MeetingContext, GeneratedEmail } from '../services/api';
+
+interface EmailGeneratorProps {
+  meetingId: string;
+  onGenerate: (context: MeetingContext) => Promise<GeneratedEmail>;
+  isLoading: boolean;
+}
+
+export const EmailGenerator: React.FC<EmailGeneratorProps> = ({
+  meetingId,
+  onGenerate,
+  isLoading,
+}) => {
+  const [context, setContext] = useState<MeetingContext>({
+    name: '',
+    last_interaction: '',
+    objective: '',
+  });
+  const [generatedEmail, setGeneratedEmail] = useState<GeneratedEmail | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const result = await onGenerate(context);
+      setGeneratedEmail(result);
+    } catch (error) {
+      console.error('Error generating email:', error);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6">
+      <h2 className="text-2xl font-bold mb-4">Gerar E-mail Personalizado</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Nome do Cliente
+          </label>
+          <input
+            type="text"
+            id="name"
+            value={context.name}
+            onChange={(e) => setContext({ ...context, name: e.target.value })}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="last_interaction" className="block text-sm font-medium text-gray-700">
+            Última Interação
+          </label>
+          <input
+            type="text"
+            id="last_interaction"
+            value={context.last_interaction}
+            onChange={(e) => setContext({ ...context, last_interaction: e.target.value })}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="objective" className="block text-sm font-medium text-gray-700">
+            Objetivo do E-mail (opcional)
+          </label>
+          <input
+            type="text"
+            id="objective"
+            value={context.objective}
+            onChange={(e) => setContext({ ...context, objective: e.target.value })}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+        >
+          {isLoading ? 'Gerando...' : 'Gerar E-mail'}
+        </button>
+      </form>
+
+      {generatedEmail && (
+        <div className="mt-6">
+          <h3 className="text-lg font-semibold mb-2">E-mail Gerado</h3>
+          <div className="bg-gray-50 p-4 rounded-md">
+            <p className="whitespace-pre-wrap">{generatedEmail.email}</p>
+            <div className="mt-2 text-sm text-gray-500">
+              Gerado em: {new Date(generatedEmail.generatedAt).toLocaleString()}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}; 
