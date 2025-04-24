@@ -38,7 +38,8 @@ npm run dev
 src/
 ├── controllers/         # Controladores da aplicação
 │   ├── EmailController.ts
-│   └── MeetingController.ts
+│   ├── MeetingController.ts
+│   └── TranscriptionController.ts
 ├── services/           # Serviços de negócio
 │   ├── EmailGenerator.ts
 │   └── MeetingSummarizer.ts
@@ -47,6 +48,7 @@ src/
 ├── mocks/             # Dados mockados para teste
 │   ├── meeting1.ts
 │   ├── meeting2.ts
+│   ├── meeting3.ts
 │   └── index.ts
 └── server.ts          # Arquivo principal
 ```
@@ -75,7 +77,7 @@ POST /meetings/:meetingId/summarize
 **Resposta de Erro:**
 ```json
 {
-  "error": "Invalid meeting ID. Available IDs are: meeting-001, meeting-002"
+  "error": "Invalid meeting ID. Available IDs are: meeting-001, meeting-002, meeting-003"
 }
 ```
 
@@ -107,16 +109,55 @@ POST /meetings/:meetingId/generate-email
 }
 ```
 
+#### 3. Obter Transcrições
+```http
+GET /transcriptions
+```
+
+**Resposta de Sucesso:**
+```json
+[
+  {
+    "id": "meeting-001",
+    "transcription": "Transcrição completa da reunião..."
+  },
+  {
+    "id": "meeting-002",
+    "transcription": "Transcrição completa da reunião..."
+  },
+  {
+    "id": "meeting-003",
+    "transcription": "Transcrição completa da reunião..."
+  }
+]
+```
+
+#### 4. Obter Transcrição Específica
+```http
+GET /transcriptions/:meetingId
+```
+
+**Parâmetros de URL:**
+- `meetingId` (obrigatório): ID da reunião
+
+**Resposta de Sucesso:**
+```json
+{
+  "id": "meeting-001",
+  "transcription": "Transcrição completa da reunião..."
+}
+```
+
 **Resposta de Erro:**
 ```json
 {
-  "error": "Invalid meeting ID. Available IDs are: meeting-001, meeting-002"
+  "error": "Meeting not found"
 }
 ```
 
 ### Reuniões Disponíveis
 
-O sistema possui duas reuniões mockadas para teste:
+O sistema possui três reuniões mockadas para teste:
 
 1. **meeting-001**
    - Empresa: Desenvolvimento de software
@@ -137,6 +178,13 @@ O sistema possui duas reuniões mockadas para teste:
      - Problemas com relatórios
    - Orçamento: R$ 30 mil/ano
    - Próximo passo: Demonstração na quarta-feira às 15h
+
+3. **meeting-003**
+   - Entrevista: AI SDE - Urci
+   - Tipo: Entrevista técnica
+   - Participantes: Rafael (CEO) e Leonardo
+   - Foco: Experiência técnica e fit cultural
+   - Resultado: Proposta de contrato enviada
 
 ## 🤖 Integração com IA
 
