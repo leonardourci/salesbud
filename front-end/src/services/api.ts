@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3001',
 });
 
 export interface MeetingContext {
@@ -22,6 +22,11 @@ export interface GeneratedEmail {
   generatedAt: string;
 }
 
+export interface Transcription {
+  id: string;
+  transcription: string;
+}
+
 export const summarizeMeeting = async (meetingId: string): Promise<MeetingSummary> => {
   const response = await api.post(`/meetings/${meetingId}/summarize`);
   return response.data;
@@ -32,5 +37,10 @@ export const generateEmail = async (
   context: MeetingContext
 ): Promise<GeneratedEmail> => {
   const response = await api.post(`/meetings/${meetingId}/generate-email`, { context });
+  return response.data;
+};
+
+export const getTranscription = async (meetingId: string): Promise<Transcription> => {
+  const response = await api.get(`/transcriptions/${meetingId}`);
   return response.data;
 }; 

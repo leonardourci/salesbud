@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { MeetingSummary as MeetingSummaryType } from '../services/api';
-import ReactMarkdown from 'react-markdown';
+import { Transcription } from '../services/api';
 
-interface MeetingSummaryProps {
-  summary: MeetingSummaryType;
+interface TranscriptionViewerProps {
+  transcription: Transcription | null;
   isLoading: boolean;
 }
 
-export const MeetingSummary: React.FC<MeetingSummaryProps> = ({ summary, isLoading }) => {
+export const TranscriptionViewer: React.FC<TranscriptionViewerProps> = ({ transcription, isLoading }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   if (isLoading) {
@@ -20,13 +19,17 @@ export const MeetingSummary: React.FC<MeetingSummaryProps> = ({ summary, isLoadi
     );
   }
 
+  if (!transcription) {
+    return null;
+  }
+
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <div 
         className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <h2 className="text-2xl font-bold">Resumo da Reunião</h2>
+        <h2 className="text-2xl font-bold">Transcrição da Reunião</h2>
         <button className="text-gray-500 hover:text-gray-700">
           {isExpanded ? (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,14 +43,11 @@ export const MeetingSummary: React.FC<MeetingSummaryProps> = ({ summary, isLoadi
         </button>
       </div>
       {isExpanded && (
-        <>
-          <div className="mt-4 prose max-w-none">
-            <ReactMarkdown>{summary.summary}</ReactMarkdown>
-          </div>
-          <div className="mt-4 text-sm text-gray-500">
-            Gerado em: {new Date(summary.generatedAt).toLocaleString()}
-          </div>
-        </>
+        <div className="mt-4 prose max-w-none">
+          <pre className="whitespace-pre-wrap font-sans text-sm">
+            {transcription.transcription}
+          </pre>
+        </div>
       )}
     </div>
   );

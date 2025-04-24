@@ -8,14 +8,13 @@ interface EmailGeneratorProps {
 }
 
 export const EmailGenerator: React.FC<EmailGeneratorProps> = ({
-  meetingId,
   onGenerate,
   isLoading,
 }) => {
   const [context, setContext] = useState<MeetingContext>({
-    name: '',
-    last_interaction: '',
-    objective: '',
+    name: 'Leonardo Urci - FullStack Software Engineer',
+    last_interaction: 'CV pelo Linkedin - 7 dias atrás',
+    objective: 'Contrato - AI SDE Pleno - SalesBud',
   });
   const [generatedEmail, setGeneratedEmail] = useState<GeneratedEmail | null>(null);
 
