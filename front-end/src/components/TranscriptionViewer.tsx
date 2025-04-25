@@ -12,9 +12,9 @@ export const TranscriptionViewer: React.FC<TranscriptionViewerProps> = ({ transc
   if (isLoading) {
     return (
       <div className="animate-pulse">
-        <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-        <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
-        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+        <div className="h-4 bg-primary bg-opacity-30 rounded w-3/4 mb-4"></div>
+        <div className="h-4 bg-primary bg-opacity-30 rounded w-1/2 mb-4"></div>
+        <div className="h-4 bg-primary bg-opacity-30 rounded w-5/6"></div>
       </div>
     );
   }
@@ -29,8 +29,8 @@ export const TranscriptionViewer: React.FC<TranscriptionViewerProps> = ({ transc
         className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <h2 className="text-2xl font-bold">Transcrição da Reunião</h2>
-        <button className="text-gray-500 hover:text-gray-700">
+        <h2 className="text-2xl font-bold text-black">Transcrição da Reunião</h2>
+        <button className="text-primary hover:text-black">
           {isExpanded ? (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
@@ -44,7 +44,7 @@ export const TranscriptionViewer: React.FC<TranscriptionViewerProps> = ({ transc
       </div>
       {isExpanded && (
         <div className="mt-4 prose max-w-none">
-          <pre className="whitespace-pre-wrap font-sans text-sm">
+          <pre className="whitespace-pre-wrap font-sans text-sm text-black">
             {transcription.transcription}
           </pre>
         </div>

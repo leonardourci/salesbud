@@ -53,23 +53,23 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-black py-8">
       <div className="max-w-4xl mx-auto px-4">
         <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">SalesBud</h1>
-          <p className="text-lg text-gray-600">Gerador de E-mails Personalizados com IA</p>
+          <h1 className="text-4xl font-bold text-primary mb-2">SalesBud</h1>
+          <p className="text-lg text-white">Gerador de E-mails Personalizados com IA</p>
         </header>
 
         <div className="space-y-6">
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold mb-4">Selecione uma Reunião</h2>
+            <h2 className="text-2xl font-bold text-black mb-4">Selecione uma Reunião</h2>
             <div className="flex space-x-4">
               <button
                 onClick={() => handleMeetingChange('meeting-003')}
                 className={`px-4 py-2 rounded-md ${
                   selectedMeeting === 'meeting-003'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-primary text-white'
+                    : 'bg-black text-white hover:bg-primary hover:bg-opacity-80'
                 }`}
               >
                 AI SDE - Urci
@@ -78,8 +78,8 @@ const App: React.FC = () => {
                 onClick={() => handleMeetingChange('meeting-001')}
                 className={`px-4 py-2 rounded-md ${
                   selectedMeeting === 'meeting-001'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-primary text-white'
+                    : 'bg-black text-white hover:bg-primary hover:bg-opacity-80'
                 }`}
               >
                 Reunião 001
@@ -88,8 +88,8 @@ const App: React.FC = () => {
                 onClick={() => handleMeetingChange('meeting-002')}
                 className={`px-4 py-2 rounded-md ${
                   selectedMeeting === 'meeting-002'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-primary text-white'
+                    : 'bg-black text-white hover:bg-primary hover:bg-opacity-80'
                 }`}
               >
                 Reunião 002
@@ -99,14 +99,14 @@ const App: React.FC = () => {
               <button
                 onClick={handleSummarize}
                 disabled={isLoadingSummary}
-                className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+                className="flex-1 bg-primary text-white py-2 px-4 rounded-md hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
               >
                 {isLoadingSummary ? 'Carregando...' : 'Resumir Reunião'}
               </button>
               <button
                 onClick={handleViewTranscription}
                 disabled={isLoadingTranscription}
-                className="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
+                className="flex-1 bg-black text-white py-2 px-4 rounded-md hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50"
               >
                 {isLoadingTranscription ? 'Carregando...' : 'Ver Transcrição'}
               </button>
