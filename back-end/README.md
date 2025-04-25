@@ -180,7 +180,7 @@ O sistema possui três reuniões mockadas para teste:
    - Próximo passo: Demonstração na quarta-feira às 15h
 
 3. **meeting-003**
-   - Entrevista: AI SDE - Urci
+   - Entrevista: Urci - AI SDE Interview
    - Tipo: Entrevista técnica
    - Participantes: Rafael (CEO) e Leonardo
    - Foco: Experiência técnica e fit cultural
