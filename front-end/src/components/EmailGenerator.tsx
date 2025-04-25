@@ -75,7 +75,7 @@ export const EmailGenerator: React.FC<EmailGeneratorProps> = ({
           disabled={isLoading}
           className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
         >
-          {isLoading ? 'Gerando...' : 'Gerar E-mail'}
+          {isLoading ? 'Gerando...' : 'Gerar E-mail Com IA'}
         </button>
       </form>
 

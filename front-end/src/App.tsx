@@ -101,7 +101,7 @@ const App: React.FC = () => {
                 disabled={isLoadingSummary}
                 className="flex-1 bg-primary text-white py-2 px-4 rounded-md hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
               >
-                {isLoadingSummary ? 'Carregando...' : 'Resumir Reunião'}
+                {isLoadingSummary ? 'Carregando...' : 'Resumir Reunião Com IA'}
               </button>
               <button
                 onClick={handleViewTranscription}

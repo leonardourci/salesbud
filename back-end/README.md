@@ -57,7 +57,7 @@ src/
 
 ### Endpoints
 
-#### 1. Resumir Reunião
+#### 1. Resumir Reunião Com IA
 ```http
 POST /meetings/:meetingId/summarize
 ```
@@ -81,7 +81,7 @@ POST /meetings/:meetingId/summarize
 }
 ```
 
-#### 2. Gerar E-mail
+#### 2. Gerar E-mail Com IA
 ```http
 POST /meetings/:meetingId/generate-email
 ```
