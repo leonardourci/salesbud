@@ -23,7 +23,7 @@ npm start
 
 ## 🔧 Requirements
 
-- Node.js (v14 or higher)
+- Node.js (v18 or higher)
 - OpenAI API key (required for AI features)
 
 ## 📝 Environment Setup
